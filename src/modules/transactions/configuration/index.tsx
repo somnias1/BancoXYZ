@@ -118,6 +118,7 @@ export default function TransactionsConfiguration({
             required
             placeholder="0"
             error={errors.value?.message}
+            data-testid="value-input"
             {...form.register('value')}
           />
           <TextInput
@@ -126,6 +127,7 @@ export default function TransactionsConfiguration({
             required
             placeholder="e.g. USD"
             error={errors.currency?.message}
+            data-testid="currency-input"
             {...form.register('currency')}
           />
           <TextInput
@@ -134,12 +136,14 @@ export default function TransactionsConfiguration({
             required
             placeholder="e.g. 1234567890"
             error={errors.payeerDocument?.message}
+            data-testid="payeer-input"
             {...form.register('payeerDocument')}
           />
           <CheckBox
             label="Will be a programmed transfer?"
             checked={isProgrammedTransfer}
             onChange={handleToggleTransfer}
+            data-testid="programmed-transfer-checkbox"
           />
           {isProgrammedTransfer && (
             <TextInput
@@ -147,6 +151,7 @@ export default function TransactionsConfiguration({
               type="date"
               placeholder="e.g. 2026-01-01"
               error={errors.transferDate?.message}
+              data-testid="transfer-date-input"
               {...form.register('transferDate')}
             />
           )}
@@ -169,7 +174,7 @@ export default function TransactionsConfiguration({
         <Button
           onClick={form.handleSubmit(handleSubmit, onInvalid)}
           aria-label="Save transactions configuration"
-          data-testid="save-transactions-configuration"
+          data-testid="save-transaction"
           disabled={isPending}
           loading={isPending}
         >

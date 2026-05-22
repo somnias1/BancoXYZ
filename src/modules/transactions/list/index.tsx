@@ -93,7 +93,7 @@ export default function TransactionsList() {
           </Button>
         </div>
       )}
-      {isSuccess && transfers.length > 0 && (
+      {isSuccess && (
         <div className="flex flex-col gap-4 items-center h-screen w-full p-4 m-4 rounded-xl shadow-md">
           <h1 className="text-2xl font-bold">Transactions</h1>
           <Button
@@ -172,11 +172,13 @@ export default function TransactionsList() {
               : `${filteredTransfers.length} transaction${filteredTransfers.length === 1 ? '' : 's'} found`}
           </p>
           <TransactionsTable transfers={filteredTransfers} />
-          <TransactionsConfiguration
-            open={displayTransactionDialog}
-            onClose={handleCloseTransactionDialog}
-            onSuccess={handleSuccessTransactionCreation}
-          />
+          {displayTransactionDialog && (
+            <TransactionsConfiguration
+              open={displayTransactionDialog}
+              onClose={handleCloseTransactionDialog}
+              onSuccess={handleSuccessTransactionCreation}
+            />
+          )}
         </div>
       )}
     </div>

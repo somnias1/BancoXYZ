@@ -68,16 +68,24 @@ export default function Login() {
         alt="BancoXYZ"
         className="w-1/2 pb-8"
       />
-      <h1 id="login-heading" className="text-2xl font-bold">Welcome to BancoXYZ</h1>
+      <h1 id="login-heading" className="text-2xl font-bold">
+        Welcome to BancoXYZ
+      </h1>
       <p className="text-sm text-gray-500">
         Please enter your email and password to login.
       </p>
-      <Form methods={form} onSubmit={handleLogin} onInvalid={onInvalid} aria-labelledby="login-heading">
+      <Form
+        methods={form}
+        onSubmit={handleLogin}
+        onInvalid={onInvalid}
+        aria-labelledby="login-heading"
+      >
         <div className="flex flex-col gap-4">
           <TextInput
             placeholder="Email"
             label="Email"
             required
+            data-testid="email-input"
             autoComplete="email"
             error={errors.email?.message}
             {...form.register('email')}
@@ -88,12 +96,14 @@ export default function Login() {
             required
             type="password"
             autoComplete="current-password"
+            data-testid="password-input"
             error={errors.password?.message}
             {...form.register('password')}
           />
           <Button
             type="submit"
             variant="primary"
+            data-testid="login-button"
             loading={isPending}
             disabled={isPending || !email || !password}
             onClick={form.handleSubmit(handleLogin, onInvalid)}

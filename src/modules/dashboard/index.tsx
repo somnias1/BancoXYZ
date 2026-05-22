@@ -1,6 +1,7 @@
 import { Button } from '@/components/button';
 import Spinner from '@/components/spinner/Spinner';
 import { useGetBalance } from '@/services/balance';
+import { formatCurrency } from '@/utils/general';
 import { useMemo } from 'react';
 
 export default function Dashboard() {
@@ -13,19 +14,10 @@ export default function Dashboard() {
   } = useGetBalance({ enabled: true });
   const formattedBalance = useMemo(() => {
     if (!balanceResponse) return '';
-    try {
-      const formatted = new Intl.NumberFormat(undefined, {
-        style: 'currency',
-        currency: balanceResponse.currency,
-      }).format(balanceResponse.accountBalance);
-      return formatted;
-    } catch (_) {
-      const formatted = new Intl.NumberFormat(undefined, {
-        style: 'currency',
-        currency: 'USD',
-      }).format(balanceResponse.accountBalance);
-      return formatted;
-    }
+    return formatCurrency(
+      balanceResponse.accountBalance,
+      balanceResponse.currency,
+    );
   }, [balanceResponse]);
   return (
     <div className="flex flex-col gap-4 items-center justify-center h-screen">

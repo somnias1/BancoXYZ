@@ -4,11 +4,13 @@ import type { FormProps } from './types';
 export default function Form<T extends FieldValues>({
   children,
   methods,
-  ...props
+  onSubmit,
+  onInvalid,
+  ...formProps
 }: FormProps<T>) {
   return (
     <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(props.onSubmit, props.onInvalid)}>
+      <form onSubmit={methods.handleSubmit(onSubmit, onInvalid)} {...formProps}>
         {children}
       </form>
     </FormProvider>

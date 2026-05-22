@@ -1,6 +1,7 @@
 import { useId } from 'react';
 import { Spinner } from '../spinner';
 import type { TextInputProps } from './types';
+import { Label } from '../label';
 
 export default function TextInput({
   label,
@@ -17,15 +18,9 @@ export default function TextInput({
     <div>
       {label && (
         <div className="flex gap-2 items-center">
-          <label htmlFor={inputId}>
+          <Label htmlFor={inputId} required={props.required}>
             {label}
-            {props.required && (
-              <span className="text-red-500" aria-hidden="true">
-                {' '}
-                *
-              </span>
-            )}
-          </label>
+          </Label>
           {loading && (
             <div className="flex items-center gap-2">
               <span className="sr-only">Loading…</span>

@@ -8,7 +8,7 @@ export default function TransactionsTable({
     <section aria-label="Transactions table" className="w-full overflow-x-auto">
       <table
         data-testid="transactions-table"
-        className="w-full border-collapse border-2 border-gray-400 bg-brand-400 rounded-md"
+        className="w-full border-collapse border-2 border-gray-400 bg-brand-400"
       >
         <caption className="sr-only">
           List of transactions including date, payeer, amount, and currency

@@ -1,18 +1,26 @@
 import Button from '@/components/button/Button';
 import Spinner from '@/components/spinner/Spinner';
 import TextInput from '@/components/textInput/TextInput';
-import { useGetTransferList } from '@/services/transfer';
 import TransactionsTable from '../table';
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
+import TransactionsConfiguration from '../configuration';
+import type { TransactionValues } from '../configuration/schema';
+import { useInitializeTransactionsStore } from '../store';
+import { useTransactionsStore } from '../store/store';
 
 export default function TransactionsList() {
-  const {
-    data: transferListResponse,
-    isLoading,
-    isError,
-    refetch,
-    isSuccess,
-  } = useGetTransferList();
+  const { isLoading, isError, isSuccess, refetch } =
+    useInitializeTransactionsStore();
+  const transfers = useTransactionsStore((state) => state.transactions);
+  const updateTransactions = useTransactionsStore(
+    (state) => state.actions.updateTransactions,
+  );
+  const [displayTransactionDialog, setDisplayTransactionDialog] =
+    useState(false);
+
+  const handleCloseTransactionDialog = useCallback(() => {
+    setDisplayTransactionDialog(false);
+  }, []);
 
   const initialFilters = { payeer: '', date: '', value: '' };
   const [filters, setFilters] = useState(initialFilters);
@@ -23,14 +31,15 @@ export default function TransactionsList() {
 
   const filteredTransfers = useMemo(() => {
     return (
-      transferListResponse?.transfers.filter((transfer) => {
+      transfers.filter((transfer) => {
         const matchesPayeer =
           !filters.payeer ||
           transfer.payeer.name
             .toLowerCase()
             .includes(filters.payeer.toLowerCase().trim());
         const matchesDate =
-          !filters.date || transfer.date.slice(0, 10) === filters.date.slice(0, 10);
+          !filters.date ||
+          transfer.date.slice(0, 10) === filters.date.slice(0, 10);
         const matchesValue =
           !filters.value ||
           transfer.value.toString().includes(filters.value.trim());
@@ -38,7 +47,15 @@ export default function TransactionsList() {
         return matchesPayeer && matchesDate && matchesValue;
       }) ?? []
     );
-  }, [transferListResponse, filters]);
+  }, [transfers, filters]);
+
+  const handleSuccessTransactionCreation = useCallback(
+    (values: TransactionValues) => {
+      updateTransactions(values);
+      setDisplayTransactionDialog(false);
+    },
+    [updateTransactions],
+  );
 
   return (
     <div className="flex flex-col gap-4 items-center justify-center h-screen">
@@ -76,12 +93,19 @@ export default function TransactionsList() {
           </Button>
         </div>
       )}
-      {isSuccess && transferListResponse && (
-        <div className="flex flex-col gap-4 items-center h-screen w-full p-4 m-4">
+      {isSuccess && transfers.length > 0 && (
+        <div className="flex flex-col gap-4 items-center h-screen w-full p-4 m-4 rounded-xl shadow-md">
           <h1 className="text-2xl font-bold">Transactions</h1>
+          <Button
+            onClick={() => setDisplayTransactionDialog(true)}
+            aria-label="Create new transaction"
+            data-testid="create-new-transaction"
+          >
+            Create new transaction
+          </Button>
           <search
             aria-label="Filter transactions"
-            className="flex flex-wrap gap-3 w-full items-end"
+            className="flex flex-wrap gap-3 w-full items-end bg-white p-4 rounded-xl shadow-md"
           >
             <div className="flex-1 min-w-[160px]">
               <TextInput
@@ -148,6 +172,11 @@ export default function TransactionsList() {
               : `${filteredTransfers.length} transaction${filteredTransfers.length === 1 ? '' : 's'} found`}
           </p>
           <TransactionsTable transfers={filteredTransfers} />
+          <TransactionsConfiguration
+            open={displayTransactionDialog}
+            onClose={handleCloseTransactionDialog}
+            onSuccess={handleSuccessTransactionCreation}
+          />
         </div>
       )}
     </div>

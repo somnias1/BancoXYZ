@@ -12,10 +12,15 @@ import {
 } from '@tanstack/react-query';
 import { transferPaths, transferQueryKey } from './constants';
 import { config } from '@/config';
+import type { AxiosError } from 'axios';
 
 export function useCreateTransfer(
   options?: Partial<
-    UseMutationOptions<TransferResponse, Error, TransferRequest>
+    UseMutationOptions<
+      TransferResponse,
+      Error & AxiosError<TransferResponse> & { data: string },
+      TransferRequest
+    >
   >,
 ) {
   const { callbackApi } = useCallbackApi();

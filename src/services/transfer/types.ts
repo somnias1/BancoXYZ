@@ -7,6 +7,7 @@ export type TransferRequest = {
 
 export type TransferResponse = {
   status: 'success' | 'error';
+  message: string;
 };
 
 export type TransferItem = {

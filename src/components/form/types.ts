@@ -6,12 +6,12 @@ import type {
   UseFormReturn,
 } from 'react-hook-form';
 
-export type FormProps<T extends FieldValues> = Omit<
+export type FormProps<T extends FieldValues, TTransformed extends FieldValues = T> = Omit<
   FormHTMLAttributes<HTMLFormElement>,
   'onSubmit'
 > & {
   children: ReactNode;
-  methods: UseFormReturn<T>;
-  onSubmit: SubmitHandler<T>;
+  methods: UseFormReturn<T, unknown, TTransformed>;
+  onSubmit: SubmitHandler<TTransformed>;
   onInvalid?: SubmitErrorHandler<T>;
 };

@@ -26,12 +26,18 @@ function App() {
         <Route path={routes.logout} element={<Logout />} />
         <Route element={<ProtectedShell />}>
           <Route path={routes.dashboard} element={<Dashboard />} />
-          <Route path={routes.transactions.list} element={<TransactionsList />} />
-          <Route path={routes.transactions.create} element={<TransactionsConfiguration />} />
+          <Route
+            path={routes.transactions.list}
+            element={<TransactionsList />}
+          />
+          <Route
+            path={routes.transactions.create}
+            element={<TransactionsConfiguration />}
+          />
         </Route>
       </Routes>
     </BrowserRouter>
   );
-};
+}
 
 export default App;

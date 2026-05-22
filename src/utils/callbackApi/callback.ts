@@ -13,9 +13,6 @@ async function callbackApi<T>(
     method: customConfig.method ?? 'GET',
   };
   const token = getToken();
-  if (!token) {
-    throw new Error('Token not found');
-  }
   const fullUrl = params.baseURL
     ? `${params.baseURL.replace(/\/$/, '')}/${url?.toString().replace(/^\//, '')}`
     : url;
@@ -23,7 +20,7 @@ async function callbackApi<T>(
     ...params,
     headers: {
       ...params.headers,
-      Authorization: `Bearer ${token}`,
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
     },
     url: fullUrl,
   };

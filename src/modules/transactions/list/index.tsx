@@ -30,7 +30,7 @@ export default function TransactionsList() {
             .toLowerCase()
             .includes(filters.payeer.toLowerCase().trim());
         const matchesDate =
-          !filters.date || transfer.date.slice(0, 10) === filters.date;
+          !filters.date || transfer.date.slice(0, 10) === filters.date.slice(0, 10);
         const matchesValue =
           !filters.value ||
           transfer.value.toString().includes(filters.value.trim());

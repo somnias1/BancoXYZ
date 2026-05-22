@@ -5,13 +5,17 @@ export default function Sidebar() {
   const location = useLocation();
 
   return (
-    <div className="flex flex-col bg-brand-50 rounded-r-lg m-4 shadow-md">
-      <h1 className="text-2xl font-bold bg-brand shadow-brand text-white p-4 rounded-tr-lg">
+    <aside
+      className="flex flex-col bg-brand-50 rounded-r-lg m-4 shadow-md"
+      aria-label="Sidebar"
+    >
+      <p className="text-2xl font-bold bg-brand shadow-brand text-white p-4 rounded-tr-lg" aria-hidden="true">
         BancoXYZ
-      </h1>
-      <nav className={'flex flex-col gap-8 p-4'}>
+      </p>
+      <nav aria-label="Main navigation" className={'flex flex-col gap-8 p-4'}>
         <Link
           to={routes.dashboard}
+          aria-current={location.pathname === routes.dashboard ? 'page' : undefined}
           className={[
             'text-lg font-bold rounded-lg p-2 hover:bg-brand-100',
             location.pathname === routes.dashboard && 'bg-brand-100',
@@ -21,6 +25,7 @@ export default function Sidebar() {
         </Link>
         <Link
           to={routes.transactions.list}
+          aria-current={location.pathname === routes.transactions.list ? 'page' : undefined}
           className={[
             'text-lg font-bold rounded-lg p-2 hover:bg-brand-100',
             location.pathname === routes.transactions.list && 'bg-brand-100',
@@ -30,6 +35,7 @@ export default function Sidebar() {
         </Link>
         <Link
           to={routes.logout}
+          aria-current={location.pathname === routes.logout ? 'page' : undefined}
           className={[
             'text-lg font-bold rounded-lg p-2 hover:bg-brand-100',
             location.pathname === routes.logout && 'bg-brand-100',
@@ -38,6 +44,6 @@ export default function Sidebar() {
           Logout
         </Link>
       </nav>
-    </div>
+    </aside>
   );
 }

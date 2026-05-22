@@ -60,10 +60,10 @@ export default function Dashboard() {
           className="flex flex-col items-center gap-2 h-screen"
           data-testid="balance-section"
         >
-          <h1 className="text-2xl font-bold">Dashboard</h1>
+          <h1 className="text-2xl font-bold pt-4 mt-4">Dashboard</h1>
           <section
             aria-label="Account balance"
-            className="flex flex-col items-center gap-2 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white p-4 rounded-xl shadow-md"
+            className="flex flex-col items-center gap-2 absolute top-1/2 left-1/2 -translate-x-1/8 -translate-y-1/2 bg-white p-4 rounded-xl shadow-md"
           >
             <p>Here is your current balance</p>
             <p className="text-sm text-gray-500">

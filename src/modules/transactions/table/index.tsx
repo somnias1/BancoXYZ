@@ -5,15 +5,18 @@ export default function TransactionsTable({
   transfers,
 }: Readonly<TransactionsTableProps>) {
   return (
-    <section aria-label="Transactions table" className="w-full overflow-x-auto">
+    <section
+      aria-label="Transactions table"
+      className="w-full overflow-x-auto rounded-xl"
+    >
       <table
         data-testid="transactions-table"
-        className="w-full border-collapse border-2 border-gray-400 bg-brand-400"
+        className="w-full border-collapse border-2 border-gray-400 bg-brand-400 rounded-xl"
       >
         <caption className="sr-only">
           List of transactions including date, payeer, amount, and currency
         </caption>
-        <thead className="bg-brand-400">
+        <thead className="bg-brand-400 rounded-t-xl">
           <tr className="text-left text-white border-b-2 border-gray-400">
             <th
               scope="col"
@@ -41,7 +44,7 @@ export default function TransactionsTable({
             </th>
           </tr>
         </thead>
-        <tbody className="bg-brand-50">
+        <tbody className="bg-brand-50 rounded-b-xl">
           {transfers.length > 0 &&
             transfers.map((transfer) => (
               <TransactionsRow

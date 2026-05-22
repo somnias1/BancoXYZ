@@ -12,13 +12,16 @@
     "test:coverage": "jest --config jest.config.js --coverage"
   },
   "dependencies": {
+    "@hookform/resolvers": "5.4.0",
     "@tanstack/react-query": "5.100.11",
     "@tanstack/react-query-devtools": "5.100.11",
     "axios": "1.16.1",
     "react": "19.2.6",
     "react-cookie": "8.1.2",
     "react-dom": "19.2.6",
-    "react-router-dom": "7.15.1"
+    "react-hook-form": "7.76.0",
+    "react-router-dom": "7.15.1",
+    "zod": "4.4.3"
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.14",

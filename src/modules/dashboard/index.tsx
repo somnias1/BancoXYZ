@@ -11,7 +11,6 @@ export default function Dashboard() {
     isSuccess,
     refetch,
   } = useGetBalance({ enabled: true });
-  console.log(balanceResponse);
   const formattedBalance = useMemo(() => {
     if (!balanceResponse) return '';
     try {
@@ -57,6 +56,7 @@ export default function Dashboard() {
           <Button
             variant="secondary"
             aria-label="Retry loading balance"
+            data-testid="retry-button"
             onClick={() => refetch()}
           >
             Retry

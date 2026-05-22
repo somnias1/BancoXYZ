@@ -12,13 +12,16 @@
     "test:coverage": "jest --config jest.config.js --coverage"
   },
   "dependencies": {
+    "@hookform/resolvers": "5.4.0",
     "@tanstack/react-query": "5.100.11",
     "@tanstack/react-query-devtools": "5.100.11",
     "axios": "1.16.1",
     "react": "19.2.6",
     "react-cookie": "8.1.2",
     "react-dom": "19.2.6",
-    "react-router-dom": "7.15.1"
+    "react-hook-form": "7.76.0",
+    "react-router-dom": "7.15.1",
+    "zod": "4.4.3"
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.14",
@@ -26,8 +29,10 @@
     "@rsbuild/core": "2.0.6",
     "@rsbuild/plugin-react": "2.0.0",
     "@tailwindcss/postcss": "4.3.0",
+    "@testing-library/dom": "10.4.1",
     "@testing-library/jest-dom": "6.9.1",
     "@testing-library/react": "16.3.2",
+    "@testing-library/user-event": "14.6.1",
     "@types/jest": "29.5.14",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",

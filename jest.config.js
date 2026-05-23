@@ -13,6 +13,7 @@ const config = {
     '^.+\\.(tsx?|js)$': ['ts-jest', { tsconfig: 'tsconfig.jest.json' }],
   },
   transformIgnorePatterns: ['/node_modules/(?!(@faker-js/faker)/)'],
+  testPathIgnorePatterns: ['/node_modules/', '/e2e/'],
 };
 
 module.exports = config;

@@ -9,7 +9,8 @@ type FreshTransfer = {
 };
 
 export const test = base.extend<{ freshTransfer: FreshTransfer }>({
-  freshTransfer: async (_, use) => {
+  // biome-ignore lint/correctness/noEmptyPattern: No arguments are needed, using lodash breaks the test fixture
+  freshTransfer: async ({}, use) => {
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
     const transferDate = tomorrow.toISOString().split('T')[0];

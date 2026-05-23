@@ -1,0 +1,18 @@
+export const SELECTORS = {
+  transactionsTable: 'transactions-table',
+  createNewTransaction: 'create-new-transaction',
+  transactionsConfiguration: 'transactions-configuration',
+  saveTransaction: 'save-transaction',
+  cancelTransaction: 'cancel-transactions-configuration',
+  filterPayeer: 'filter-payeer',
+  filterDate: 'filter-date',
+  filterValue: 'filter-value',
+  clearFilters: 'clear-filters',
+  loadingBalance: 'loading-balance',
+  errorBalance: 'error-balance',
+  balanceSection: 'balance-section',
+  retryButton: 'retry-button',
+  loginButton: 'login-button',
+  emailInput: 'email-input',
+  passwordInput: 'password-input',
+} as const;

@@ -1,7 +1,7 @@
 import { useId } from 'react';
 import type { CheckBoxProps } from './types';
 
-export default function CheckBox({ label, ...props }: CheckBoxProps) {
+export default function CheckBox({ label, ...props }: Readonly<CheckBoxProps>) {
   const generatedId = useId();
   const inputId = props?.id ?? generatedId;
 

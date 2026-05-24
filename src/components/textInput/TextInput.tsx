@@ -1,14 +1,14 @@
 import { useId } from 'react';
+import { Label } from '../label';
 import { Spinner } from '../spinner';
 import type { TextInputProps } from './types';
-import { Label } from '../label';
 
 export default function TextInput({
   label,
   error,
   loading,
   ...props
-}: TextInputProps) {
+}: Readonly<TextInputProps>) {
   const generatedId = useId();
   const inputId = props?.id ?? generatedId;
   const errorId = `${inputId}-error`;

@@ -9,7 +9,7 @@ export default function Button({
   className = '',
   disabled,
   ...props
-}: ButtonProps) {
+}: Readonly<ButtonProps>) {
   const isDisabled = disabled || loading;
 
   return (

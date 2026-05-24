@@ -1,6 +1,6 @@
 import type { LabelProps } from './types';
 
-export default function Label({ children, ...props }: LabelProps) {
+export default function Label({ children, ...props }: Readonly<LabelProps>) {
   return (
     <label htmlFor={props.htmlFor} {...props}>
       {children}
